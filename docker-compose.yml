@@ -1,0 +1,16 @@
+services:
+  class-soar:
+    build:
+      context: .
+    container_name: class-soar
+    image: class-soar:latest
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    tty: true
+    stdin_open: true
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+    restart: unless-stopped
